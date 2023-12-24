@@ -6,10 +6,7 @@ module.exports = (req, res, next) => {
     const authHeader = req.headers.authorization;
 
     if (!authHeader) {
-        return res.status(401).json({
-            error: true,
-            message: "Token no provided"
-        })
+        return next();
     }
 
     const parts = authHeader.split(" ");
