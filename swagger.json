@@ -7,6 +7,16 @@
     },
     "basePath": "/api",
     "schemes": ["http", "https"],
+    "servers": [
+        {
+          "url": "https://apilogin-mvf1.onrender.com/",
+          "description": "Render"
+        },
+    
+        {
+          "url": "http://localhost:3000",
+          "description": "Local"
+        }],
     "paths": {
       "/register": {
         "post": {
