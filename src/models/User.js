@@ -19,31 +19,20 @@ const UserSchema = new mongoose.Schema({
         require: true,
         select: false,
     },
-
+    
     createdAt: {
         type: Date,
         default: Date.now
     }
 });
 
-UserSchema.pre('save', async function (next) {
-    if (!this.isModified('password')) {
-        return next();
-    }
-
-    try {
-        const hash = await bcryptjs.hash(this.password, 10);
-        this.password = hash;
-        return next();
-    } catch (error) {
-        return next(error);
-    }
-});
-
-UserSchema.methods.toJSON = function () {
-    const obj = this.toObject();
-    delete obj.password;
-    return obj;
-};
+UserSchema.pre('save', async function(next) {
+    const hash = await bcryptjs.hash(this.password, 10);
+    console.log(this);
+    console.log(hash);
+    this.password = hash;
+})
 
 const User = mongoose.model('User', UserSchema);
+
+module.exports = User
