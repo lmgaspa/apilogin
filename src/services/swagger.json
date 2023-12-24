@@ -5,7 +5,6 @@
       "title": "Authentication API",
       "description": "API for user registration and authentication"
     },
-    "basePath": "/api",
     "schemes": ["http", "https"],
     "servers": [
         {
