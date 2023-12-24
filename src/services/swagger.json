@@ -17,7 +17,7 @@
           "description": "Local"
         }],
     "paths": {
-      "/register": {
+      "/admin/register": {
         "post": {
           "summary": "Register a new user",
           "consumes": ["application/json"],
