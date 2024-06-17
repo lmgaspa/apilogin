@@ -9,7 +9,6 @@ const app = express();
 
 // Definição das origens permitidas
 const allowedOrigins = [
-    'https://diana-global.vercel.app',
     'https://dianaglobal.com.br',
     'http://localhost:3000'
 ];
