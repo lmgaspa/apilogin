@@ -12,7 +12,9 @@ app.use(express.json());
 const allowedOrigins = [
   'https://dianaglobal.com.br',
   'http://localhost:3000',
-  'https://apilogin-mvf1.onrender.com'
+  'https://apilogin-mvf1.onrender.com',
+  'https://apilogin-mvf1.onrender.com/auth/authenticate',
+  'https://apilogin-mvf1.onrender.com/auth/register'
 ];
 
 const corsOptions = {
