@@ -10,6 +10,10 @@ const mongodbURI = process.env.MONGODB_URI;
 
 // Conecta ao MongoDB usando Mongoose
 mongoose.connect(mongodbURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 30000, // Increase server selection timeout
+  socketTimeoutMS: 45000 // Increase socket timeout
 });
 
 // Verifica se a conexão foi bem sucedida
