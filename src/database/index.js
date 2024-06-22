@@ -1,16 +1,22 @@
-const mongoose = require('mongoose')
+// index.js (ou app.js)
 
-mongoose.connect('mongodb+srv://luizgabi:luizgabi0410@apiluiz.ihmeusb.mongodb.net/api-nodejs-mongo?retryWrites=true&w=majority', {},
-    (error) => {
-    if(error) {
-console.log('Falha ao autenticar com mongodb');
-console.log(error);
-return;
-    }
+// Carrega as variáveis de ambiente do arquivo .env
+require('dotenv').config();
 
-    console.log('Conexão com mongodb estável')
-})
+const mongoose = require('mongoose');
 
-mongoose.Promise = global.Promise;
+// Obtém a URL de conexão do MongoDB a partir das variáveis de ambiente
+const mongodbURI = process.env.MONGODB_URI;
 
-module.exports = mongoose;
+// Conecta ao MongoDB usando Mongoose
+mongoose.connect(mongodbURI, {
+});
+
+// Verifica se a conexão foi bem sucedida
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'Error of conexion to MongoDB:'));
+db.once('open', function() {
+  console.log('Conected to MongoDB with sucess!');
+});
+
+// Resto do seu código da aplicação
