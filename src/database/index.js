@@ -1,16 +1,20 @@
-const mongoose = require('mongoose')
+require('dotenv').config();
+const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://luizgabi:luizgabi0410@apiluiz.ihmeusb.mongodb.net/api-nodejs-mongo?retryWrites=true&w=majority', {},
-    (error) => {
-    if(error) {
-console.log('Falha ao autenticar com mongodb');
-console.log(error);
-return;
+mongoose.set('strictQuery', true);
+
+mongoose.connect(process.env.MONGODB_URI, {}, (error) => {
+    if (error) {
+        console.log('Failed to authenticate with mongodb');
+        console.log(error);
+        return;
     }
 
-    console.log('Conexão com mongodb estável')
-})
+    console.log('Connection to stable mongodb');
+});
 
 mongoose.Promise = global.Promise;
 
-module.exports = mongoose;
+const secret = process.env.SECRET;
+
+module.exports = { mongoose, secret };
