@@ -34,8 +34,7 @@ router.post('/register', async (req, res) => {
 
 router.post('/authenticate', async (req, res) => {
     const { email, password } = req.body;
-    const user = await UserModel.findOne({ email }).select('+password').maxTimeMS(30000); // Aumentando para 30 segundos (30000 milissegundos)
-
+    const user = await UserModel.findOne({ email }).select('+password');
 
     if (!user) {
         return res.status(400).json({

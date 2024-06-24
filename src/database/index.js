@@ -5,9 +5,9 @@ mongoose.set('strictQuery', true);
 
 mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
-  useUnifiedTopology: true,
-  serverSelectionTimeoutMS: 5000,
-  socketTimeoutMS: 45000
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 5000,
+    socketTimeoutMS: 45000
 }, (error) => {
     if (error) {
         console.log('Failed to authenticate with mongodb');
@@ -20,4 +20,4 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 mongoose.Promise = global.Promise;
 
-module.exports =  mongoose
+module.exports = mongoose
