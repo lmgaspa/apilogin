@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('../database/index');
 const bcryptjs = require('bcryptjs');
 const { v4: uuidv4 } = require('uuid');
 const Schema = mongoose.Schema;
