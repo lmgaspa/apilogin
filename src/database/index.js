@@ -1,23 +1,16 @@
-require('dotenv').config();
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-mongoose.set('strictQuery', true);
-
-mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 5000,
-    socketTimeoutMS: 45000
-}, (error) => {
-    if (error) {
-        console.log('Failed to authenticate with mongodb');
-        console.log(error);
-        return;
+mongoose.connect('mongodb+srv://luizgabi:luizgabi0410@apiluiz.ihmeusb.mongodb.net/api-nodejs-mongo?retryWrites=true&w=majority', {},
+    (error) => {
+    if(error) {
+console.log('Falha ao autenticar com mongodb');
+console.log(error);
+return;
     }
 
-    console.log('Connection to stable mongodb');
-});
+    console.log('Conexão com mongodb estável')
+})
 
 mongoose.Promise = global.Promise;
 
-module.exports = mongoose
+module.exports = mongoose;
