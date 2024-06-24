@@ -15,6 +15,4 @@ mongoose.connect(process.env.MONGODB_URI, {}, (error) => {
 
 mongoose.Promise = global.Promise;
 
-const secret = process.env.SECRET;
-
-module.exports = { mongoose, secret };
+module.exports =  mongoose
