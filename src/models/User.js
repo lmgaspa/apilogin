@@ -1,9 +1,8 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('../database');
 const bcryptjs = require('bcryptjs');
 const { v4: uuidv4 } = require('uuid');
 
-const UserSchema = new Schema({
+const UserSchema = new mongoose.Schema({
     id: {
         type: String,
         default: uuidv4,
@@ -38,6 +37,6 @@ UserSchema.pre('save', async function(next) {
     next();
 });
 
-const UserModel = mongoose.model('User', UserSchema);
+const User = mongoose.model('User', UserSchema);
 
-module.exports = UserModel;
+module.exports = User;
