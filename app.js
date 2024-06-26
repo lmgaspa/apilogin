@@ -1,13 +1,10 @@
 const express = require('express');
 const AuthController = require('./src/controllers/AuthController.js');
-const AdminController = require('./src/controllers/AdminController')
+const AdminController = require('./src/controllers/AdminController.js')
 
-const authenticateMiddleware = require('./src/middlewares/authenticate')
+const authenticateMiddleware = require('./src/middlewares/authenticate.js')
 const cors = require('cors');
 const swaggerRoute = require('./src/routes/swagger.route.js')
-const connectDB = require('./src/database/index.js')
-
-connectDB
 
 const app = express();
 app.use(cors());
@@ -26,3 +23,5 @@ app.use('/admin', authenticateMiddleware, AdminController)
 app.listen(4000, () => {
     console.log('Server is running');
 })
+
+module.exports = app;
