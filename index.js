@@ -8,20 +8,19 @@ const swaggerRoute = require('./src/routes/swagger.route.js');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors('*'));
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*'); // Allow all origins or specify specific origins
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  // Responder às preflight requests (OPÇÕES)
+app.use(cors());
+router.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*'); // Permite solicitações de qualquer origem
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+
   if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-}
+      res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+      return res.status(200).json({});
+  }
 
-next();
+  next();
 });
-
-
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = "mongodb+srv://luizgabi:luizgabi0410@apiluiz.ihmeusb.mongodb.net/?appName=APILuiz";
