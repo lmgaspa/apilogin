@@ -29,11 +29,15 @@ async function connectToMongoDB() {
 
 connectToMongoDB();
 
+const express = require('express');
+const cors = require('cors');
 const app = express();
+
 app.use(cors());
 app.use(express.json());
+
 const corsOptions = {
-  origin: 'http://localhost:3000', 'http://www.dianaglobal.com.br',
+  origin: ['http://localhost:3000', 'http://www.dianaglobal.com.br'],
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 };
