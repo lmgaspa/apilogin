@@ -1,8 +1,10 @@
 const express = require('express');
+const cors = require('cors');
+const app = express();
 const AuthController = require('./src/controllers/AuthController.js');
 const AdminController = require('./src/controllers/AdminController.js')
 const authenticateMiddleware = require('./src/middlewares/authenticate.js')
-const cors = require('cors');
+
 const swaggerRoute = require('./src/routes/swagger.route.js')
 require('dotenv').config();
 const { MongoClient } = require('mongodb');
@@ -28,10 +30,6 @@ async function connectToMongoDB() {
 }
 
 connectToMongoDB();
-
-const express = require('express');
-const cors = require('cors');
-const app = express();
 
 app.use(cors());
 app.use(express.json());
