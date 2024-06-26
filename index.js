@@ -6,14 +6,6 @@ const authenticateMiddleware = require('./src/middlewares/authenticate');
 const swaggerRoute = require('./src/routes/swagger.route.js');
 
 const app = express();
-
-// Use CORS middleware with specific origin
-app.use(cors({
-    origin: ['https://dianaglobal.com.br', 'http://localhost:3000'], // Allowed origins
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
-    allowedHeaders: ['Content-Type', 'Authorization'] // Allowed headers
-}));
-
 app.use(express.json());
 
 // Custom middleware to set headers
@@ -23,7 +15,6 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     next();
 });
-
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = "mongodb+srv://luizgabi:luizgabi0410@apiluiz.ihmeusb.mongodb.net/?appName=APILuiz";
