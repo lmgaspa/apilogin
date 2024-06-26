@@ -28,9 +28,12 @@ const UserSchema = new Schema({
         type: Date,
         default: Date.now,
     }
+}, {
+    bufferCommands: false, // Desativar buffer de comandos
+    bufferTimeoutMS: 30000 // Aumentar o tempo limite de buffering para 30 segundos (30000ms)
 });
 
-UserSchema.pre('save', async function(next) {
+UserSchema.pre('save', async function (next) {
     if (this.isModified('password')) {
         const hash = await bcryptjs.hash(this.password, 10);
         this.password = hash;
