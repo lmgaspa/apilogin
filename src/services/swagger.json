@@ -20,6 +20,7 @@
       "/auth/register": {
         "post": {
           "summary": "Register a new user",
+          "tags": ["Endpoints for Login And Register"],
           "consumes": ["application/json"],
           "produces": ["application/json"],
           "parameters": [
