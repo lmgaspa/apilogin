@@ -32,6 +32,13 @@ connectToMongoDB();
 const app = express();
 app.use(cors());
 app.use(express.json());
+const corsOptions = {
+  origin: 'http://localhost:3000', 'http://www.dianaglobal.com.br',
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+app.use(cors(corsOptions));
 
 app.use('/doc', swaggerRoute)
 app.use('/auth', AuthController)
