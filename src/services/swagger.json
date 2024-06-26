@@ -20,7 +20,7 @@
       "/auth/register": {
         "post": {
           "summary": "Register a new user",
-          "tags": ["Endpoints for Login And Register"],
+          "tags": ["Documentation for Register User"],
           "consumes": ["application/json"],
           "produces": ["application/json"],
           "parameters": [
@@ -50,9 +50,10 @@
           }
         }
       },
-      "/authenticate": {
+      "/auth/authenticate": {
         "post": {
           "summary": "Authenticate user",
+          "tags": ["Documentation for Authenticate User"],
           "consumes": ["application/json"],
           "produces": ["application/json"],
           "parameters": [
