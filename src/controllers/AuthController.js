@@ -16,7 +16,7 @@ const generateToken = (user = {}) => {
 router.post('/register', async (req, res) => {
     const { email } = req.body;
 
-    if (await UserModel.findOne({ email })) {
+    if (await UserModel.findOne({ email }).maxTimeMS(15000)); {
         return res.status(400).json({
             error: true,
             message: 'User already exists'
