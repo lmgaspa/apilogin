@@ -38,25 +38,32 @@ const client = new MongoClient(uri, {
   }
 });
 
-async function run() {
+async function connectToMongoDB() {
   try {
     await client.connect();
     await client.db("admin").command({ ping: 1 });
     console.log("Connected to MongoDB!");
-  } finally {
-    await client.close();
+
+    // Após conectar-se ao MongoDB, configure as rotas e inicie o servidor Express
+    setupRoutesAndStartServer();
+  } catch (error) {
+    console.error("Failed to connect to MongoDB:", error);
+    // Trate o erro de conexão de forma apropriada
   }
 }
 
-run().catch(console.error);
+async function setupRoutesAndStartServer() {
+  // Rotas
+  app.use('/doc', swaggerRoute);
+  app.use('/auth', AuthController);
+  app.use('/admin', authenticateMiddleware, AdminController);
 
-// Routes
-app.use('/doc', swaggerRoute);
-app.use('/auth', AuthController);
-app.use('/admin', authenticateMiddleware, AdminController);
+  // Inicia o servidor
+  const port = process.env.PORT || 10000;
+  app.listen(port, () => {
+      console.log(`Server is running on port ${port}`);
+  });
+}
 
-// Server start
-const port = process.env.PORT || 10000;
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
+// Chama a função para conectar ao MongoDB
+connectToMongoDB();
