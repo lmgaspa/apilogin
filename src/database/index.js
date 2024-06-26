@@ -1,30 +1,26 @@
-require('dotenv').config(); // Carrega as variáveis de ambiente do arquivo .env
-const mongoose = require('mongoose');
 
-const uri = process.env.MONGODB_URI; // Lê a variável de ambiente MONGODB_URI
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = "mongodb+srv://luizgabi:luizgabi0410@apiluiz.ihmeusb.mongodb.net/?appName=APILuiz";
 
-if (!uri) {
-    console.error('A variável de ambiente MONGODB_URI não está definida.');
-    process.exit(1); // Encerra o processo com erro
-}
-
-// Configura a opção strictQuery
-mongoose.set('strictQuery', true); // Ou false, dependendo da sua preferência
-
-// Conecta ao MongoDB
-mongoose.connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
-.then(() => {
-    console.log('Conexão com mongodb estável');
-})
-.catch((error) => {
-    console.log('Falha ao autenticar com mongodb');
-    console.log(error);
+// Create a MongoClient with a MongoClientOptions object to set the Stable API version
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
 });
 
-mongoose.Promise = global.Promise;
-
-module.exports = mongoose;
-
+async function run() {
+  try {
+    // Connect the client to the server	(optional starting in v4.7)
+    await client.connect();
+    // Send a ping to confirm a successful connection
+    await client.db("admin").command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+  } finally {
+    // Ensures that the client will close when you finish/error
+    await client.close();
+  }
+}
+run().catch(console.dir);
