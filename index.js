@@ -9,6 +9,7 @@ const app = express();
 app.use(express.json());
 
 // Custom middleware to set headers
+app.use(cors(corsOptions));
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*'); // Allow all origins or specify specific origins
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
