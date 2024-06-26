@@ -1,11 +1,17 @@
-require('dotenv').config();
+require('dotenv').config(); // Carrega as variáveis de ambiente do arquivo .env
 const mongoose = require('mongoose');
 
-const uri = process.env.MONGODB_URI;
+const uri = process.env.MONGODB_URI; // Lê a variável de ambiente MONGODB_URI
 
-// Set the strictQuery option to prepare for Mongoose 7
-mongoose.set('strictQuery', true); // Or false, depending on your preference
+if (!uri) {
+    console.error('A variável de ambiente MONGODB_URI não está definida.');
+    process.exit(1); // Encerra o processo com erro
+}
 
+// Configura a opção strictQuery
+mongoose.set('strictQuery', true); // Ou false, dependendo da sua preferência
+
+// Conecta ao MongoDB
 mongoose.connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -21,3 +27,4 @@ mongoose.connect(uri, {
 mongoose.Promise = global.Promise;
 
 module.exports = mongoose;
+
