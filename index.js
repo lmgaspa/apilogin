@@ -20,6 +20,6 @@ app.use('/doc', swaggerRoute)
 app.use('/auth', AuthController)
 app.use('/admin', authenticateMiddleware, AdminController)
 
-app.listen(3001, () => {
+app.listen(10000, () => {
     console.log('Server is running');
 })
