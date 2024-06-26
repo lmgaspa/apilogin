@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb+srv://luizgabi:luizgabi0410@apiluiz.ihmeusb.mongodb.net/api-nodejs-mongo?retryWrites=true&w=majority', {},
+mongoose.connect('mongodb+srv://luizgabi:luizgabi0410@apiluiz.ihmeusb.mongodb.net/api-nodejs-mongo?retryWrites=true&w=majority&appName=APILuiz', {},   
     (error) => {
     if(error) {
 console.log('Falha ao autenticar com mongodb');
