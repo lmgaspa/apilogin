@@ -7,7 +7,7 @@ const cors = require('cors');
 const swaggerRoute = require('./src/routes/swagger.route.js')
 const connectDB = require('./src/database/index.js')
 
-connectDB()
+connectDB
 
 const app = express();
 app.use(cors());
