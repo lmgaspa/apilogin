@@ -22,16 +22,6 @@ router.post('/register', async (req, res) => {
             message: 'User already exists'
         });
     }
-    // Aumentando o tempo em 20 segundos (20000 milissegundos)
-    setTimeout(async () => {
-        // Aqui você pode prosseguir com o registro do usuário
-        // Exemplo: await UserModel.create({ email, ...otherData });
-        
-        res.status(200).json({
-            success: true,
-            message: 'User registered successfully'
-        });
-    }, 20000);
 
     const user = await UserModel.create(req.body);
     user.password = undefined;

@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const router = express.Router();
+const dotenv = require('dotenv');
 const cors = require('cors');
 const AuthController = require('./src/controllers/AuthController.js');
 const AdminController = require('./src/controllers/AdminController');
@@ -22,9 +22,9 @@ app.use((req, res, next) => {
 
   next();
 });
-
+dotenv.config();
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://luizgabi:luizgabi0410@apiluiz.ihmeusb.mongodb.net/?appName=APILuiz";
+const uri = process.env.MONGODB_URI;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
