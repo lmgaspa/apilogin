@@ -1,21 +1,21 @@
+// database/index.js
 require('dotenv').config();
-
 const mongoose = require('mongoose');
 
-const uri = process.env.MONGODB_URI;
+const connectDB = async () => {
+    try {
+        await mongoose.connect(process.env.MONGO_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useCreateIndex: true,
+            useFindAndModify: false
+        });
+        console.log('MongoDB Connected...');
+    } catch (err) {
+        console.error(err.message);
+        // Exit process on failure
+        process.exit(1);
+    }
+};
 
-mongoose.connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
-.then(() => {
-    console.log('Conexão com mongodb estável');
-})
-.catch((error) => {
-    console.log('Falha ao autenticar com mongodb');
-    console.log(error);
-});
-
-mongoose.Promise = global.Promise;
-
-module.exports = mongoose;
+module.exports = connectDB;

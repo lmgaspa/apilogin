@@ -5,6 +5,9 @@ const AdminController = require('./src/controllers/AdminController')
 const authenticateMiddleware = require('./src/middlewares/authenticate')
 const cors = require('cors');
 const swaggerRoute = require('./src/routes/swagger.route.js')
+const connectDB = require('./src/database/index.js')
+
+connectDB()
 
 const app = express();
 app.use(cors());
