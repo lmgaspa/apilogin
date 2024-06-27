@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+mongoose.set('strictQuery', true); // Configura strictQuery como true
+
 const Schema = mongoose.Schema;
 const bcryptjs = require('bcryptjs');
 const { v4: uuidv4 } = require('uuid');
