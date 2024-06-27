@@ -1,30 +1,20 @@
-const mongoose = require('mongoose');
-const { MongoClient } = require('mongodb');
-require('dotenv').config();
+const mongoose = require('mongoose')
+require('dotenv').config()
 
-const uri = process.env.MONGO_URI;
-const client = new MongoClient(uri);
+const mongo_password = process.env.MONGO_PASSWORD
 
 async function connectDB() {
-  try {
-    await client.connect();
-    const dbRole = await client.db().command({ hello: 1 });
-    console.log(
-      `Role of database - Host: ${dbRole.me}  Is primary: ${dbRole.isWritablePrimary}`
-    );
-    await client.close();
-    
-    // Mongoose connection
-    await mongoose.connect(uri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log('Mongoose connected');
-  } catch (e) {
-    console.log('Error: ', e.message);
-  }
+    await mongoose.connect(`mongodb+srv://luizgabi:${mongo_password}@apiluiz.ihmeusb.mongodb.net/api-nodejs-mongo?retryWrites=true&w=majority`, {},
+        (error) => {
+            if (error) {
+                console.log('Falha ao autenticar com mongodb');
+                console.log(error);
+                return;
+            }
+            console.log('Conexão com mongodb estável')
+        })
 }
 
 mongoose.Promise = global.Promise;
 
-module.exports = connectDB;
+module.exports = connectDB
